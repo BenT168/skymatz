@@ -1,0 +1,80 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f8f9fa;
+}
+header {
+    background-color: #003366;
+    color: white;
+    padding: 1em 2em;
+    text-align: center;
+}
+nav {
+    background-color: #00509e;
+    display: flex;
+    justify-content: center;
+}
+nav a {
+    color: white;
+    padding: 1em;
+    text-decoration: none;
+    font-weight: bold;
+}
+nav a:hover {
+    background-color: #003366;
+}
+.hero {
+    background: url('https://via.placeholder.com/1200x400?text=Tour+Banner') center/cover no-repeat;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px #000;
+}
+.content {
+    padding: 2em;
+}
+.tour, form {
+    background: white;
+    padding: 1.5em;
+    margin-bottom: 1.5em;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+footer {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 1em;
+    margin-top: 2em;
+}
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1em;
+}
+.gallery img {
+    width: 100%;
+    border-radius: 8px;
+}
+input, textarea {
+    width: 100%;
+    padding: 0.5em;
+    margin-top: 0.5em;
+}
+button {
+    padding: 0.5em 1em;
+    background-color: #00509e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #003366;
+}
