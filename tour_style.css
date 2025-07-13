@@ -36,7 +36,7 @@ nav a:hover {
   }
   
   main {
-    width: 700px;         /* Match your image-gallery width */
+    width: 600px;         /* Match your image-gallery width */
     max-width: 100%;      /* Responsive for smaller screens */
     margin: 0 auto;       /* Center horizontally */
     background: #fff;

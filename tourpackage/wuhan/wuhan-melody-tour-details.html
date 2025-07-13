@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Book a Tour</title>
+<link href="../../tour_style.css" rel="stylesheet"/>
+</head>
+<body>
+<header>
+<h1>Skymatz Resources</h1>
+<p>Your Journey, Our Expertise</p>
+</header>
+<nav>
+<a href="../../index.html">Home</a>
+<a href="../../about.html">About Us</a>
+<a href="../../destination.html">Destination</a>
+<a href="../../calendar.html">Book Tour</a>
+<a href="../../contact.html">Contact</a>
+</nav>
+<div class="content">
+<main>
+<!-- About this activity -->
+<section class="about-activity">
+<div class="tour-label">Private tour</div>
+<h1>Wuhan Melody: River Legend, Hidden Heritage &amp; Craft Workshop</h1>
+<div class="image-gallery">
+<a class="gallery-img" href="../../picture/wuhan/3a220a8817004f109d3dc5341f13aade.jpeg" target="_blank"><img alt="Wuhan 1" src="../../picture/wuhan/3a220a8817004f109d3dc5341f13aade.jpeg"/></a>
+<a class="gallery-img" href="../../picture/wuhan/8b2b6e594589447baa549ecbb743502d~tplv-xv4ileqgde-image.image.jpeg" target="_blank"><img alt="Wuhan 2" src="../../picture/wuhan/8b2b6e594589447baa549ecbb743502d~tplv-xv4ileqgde-image.image.jpeg"/></a>
+<a class="gallery-img" href="../../picture/wuhan/bkn-20230425140058581-0425_00862_001_02x.jpg" target="_blank"><img alt="Wuhan 3" src="../../picture/wuhan/bkn-20230425140058581-0425_00862_001_02x.jpg"/></a>
+<a class="gallery-img" href="../../picture/wuhan/img_9601fcf660215f6c62f1795b94afd7980e6e.png" target="_blank"><img alt="Wuhan 4" src="../../picture/wuhan/img_9601fcf660215f6c62f1795b94afd7980e6e.png"/></a>
+<a class="gallery-img" href="../../picture/wuhan/W020210121334804787558.png" style="display:none;" target="_blank"><img alt="Wuhan 5" src="../../picture/wuhan/W020210121334804787558.png"/></a>
+<a class="gallery-img" href="../../picture/wuhan/W020220910457197542545.jpg" style="display:none;" target="_blank"><img alt="Wuhan 6" src="../../picture/wuhan/W020220910457197542545.jpg"/></a>
+<a class="gallery-img" href="../../picture/wuhan/武汉黄鹤楼.jpg" style="display:none;" target="_blank"><img alt="Wuhan 7" src="../../picture/wuhan/武汉黄鹤楼.jpg"/></a>
+<a class="gallery-img" href="../../picture/wuhan/New/WechatIMG3055.jpg" style="display:none;" target="_blank"><img alt="Wuhan 8" src="../../picture/wuhan/New/WechatIMG3055.jpg"/></a>
+<a class="gallery-img" href="../../picture/wuhan/New/WechatIMG3056.jpg" style="display:none;" target="_blank"><img alt="Wuhan 9" src="../../picture/wuhan/New/WechatIMG3056.jpg"/></a>
+<a class="gallery-img" href="../../picture/wuhan/New/WechatIMG3057.jpg" style="display:none;" target="_blank"><img alt="Wuhan 10" src="../../picture/wuhan/New/WechatIMG3057.jpg"/></a>
+<a class="gallery-img" href="../../picture/wuhan/New/WechatIMG3058.jpg" style="display:none;" target="_blank"><img alt="Wuhan 11" src="../../picture/wuhan/New/WechatIMG3058.jpg"/></a>
+<a class="gallery-img" href="../../picture/wuhan/New/WechatIMG3059.jpg" style="display:none;" target="_blank"><img alt="Wuhan 12" src="../../picture/wuhan/New/WechatIMG3059.jpg"/></a>
+<a class="gallery-img" href="../../picture/wuhan/New/WechatIMG3060.jpg" style="display:none;" target="_blank"><img alt="Wuhan 13" src="../../picture/wuhan/New/WechatIMG3060.jpg"/></a>
+<a class="gallery-img" href="../../picture/wuhan/New/WechatIMG3061.jpg" style="display:none;" target="_blank"><img alt="Wuhan 14" src="../../picture/wuhan/New/WechatIMG3061.jpg"/></a>
+<a class="gallery-img" href="../../picture/wuhan/New/WechatIMG3062.jpg" style="display:none;" target="_blank"><img alt="Wuhan 15" src="../../picture/wuhan/New/WechatIMG3062.jpg"/></a>
+<button class="gallery-next" onclick="showNextImages()">❯</button>
+<button class="gallery-prev" onclick="showPrevImages()">❮</button>
+</div>
+<!-- Lightbox Modal -->
+<div class="lightbox-modal" id="lightbox-modal" style="display:none;">
+<span class="lightbox-close" onclick="closeLightbox()">×</span>
+<img class="lightbox-content" id="lightbox-img"/>
+<a class="lightbox-prev" onclick="changeLightbox(-1)">❮</a>
+<a class="lightbox-next" onclick="changeLightbox(1)">❯</a>
+</div>
+<p>Experience Wuhan beyond the landmarks—explore riverfront charm, old temples, artisan alleys, and hands-on heritage crafts in this immersive journey through the heart of the city.</p>
+</section>
+<!-- Booking Section -->
+<aside class="booking-widget">
+<h2>Select participants and date</h2>
+<div class="booking-row">
+<select id="participants" name="participants">
+<option value="1">1 Adult</option>
+<option value="2">2 Adults</option>
+<option value="3">3 Adults</option>
+<option value="4">4 Adults</option>
+<option value="5">5 Adults</option>
+<option value="6">6 Adults</option>
+</select>
+<input id="date" name="date" type="date"/>
+<select id="language" name="language">
+<option>English</option>
+<option>Spanish</option>
+<option>Korean</option>
+<option>Japanese</option>
+<option>Chinese</option>
+</select>
+<button id="toggle-booking" type="button">Availability</button>
+</div>
+<form id="booking-form" style="display:none;">
+<div class="slot-row">
+<label style="margin-right:1rem;">Starting Slot Time:</label>
+<div class="slot-options">
+<div class="slot-box" data-value="08:30">08:30</div>
+<div class="slot-box" data-value="09:00">09:00</div>
+<div class="slot-box" data-value="09:30">09:30</div>
+</div>
+</div>
+<span class="pickup-note">Please provide your <a href="#" id="show-map" style="color:#90caf9; text-decoration:underline;">pickup address</a>  on booking page </span>
+<div id="map-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); align-items:center; justify-content:center; z-index:9999;">
+<div style="background:#fff; border-radius:8px; padding:1rem; max-width:90vw; max-height:80vh; position:relative;">
+<span id="close-map" style="position:absolute; top:0.5rem; right:1rem; cursor:pointer; font-size:1.5rem;">×</span>
+<div style="margin-bottom:0.5rem;">
+<input id="map-search" placeholder="Search address..." style="width: 250px; padding: 0.3rem; border-radius: 4px; border: 1px solid #ccc;" type="text"/>
+<button id="map-search-btn" style="padding: 0.3rem 0.7rem; border-radius: 4px; border: none; background: #00897b; color: #fff; font-weight: bold; cursor: pointer;">Search</button>
+</div>
+<iframe allowfullscreen="" height="300" id="map-iframe" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Wuhan&amp;output=embed" style="border:0;" width="400"></iframe>
+</div>
+</div>
+<input id="slot" name="slot" type="hidden" value="08:30"/>
+<div style="margin-top:1rem;">
+<div class="price-row" style="margin-top:1rem;">
+<span>Price per person: £<span id="price-per-person">280</span></span>
+<span style="margin-left:auto;"><strong>Total Price: £<span id="total-price">280</span></strong></span>
+<p></p>
+</div>
+</div></form>
+</aside>
+<!-- Highlights -->
+<section class="highlights">
+<h2>Highlights</h2>
+<ul>
+  <li>Visit a rare Buddhist temple with Gothic domes hidden in central Wuhan</li>
+  <li>Stroll along the Yangtze River with skyline views and city breeze</li>
+  <li>Dive into local life at lively folk street markets and historic Han alleys</li>
+  <li>Make your own lacquer fan or herbal sachet in a cultural craft workshop</li>
+  <li>End the day at ancient pavilions by the river as the sun sets over the city</li>
+</ul>
+</section>
+<!-- Full Description -->
+<section class="full-description">
+<h2>Full Description</h2>
+<p><strong>Gude Temple: </strong>Begin your day in a hidden architectural gem—this Buddhist temple features rare domes and pillars resembling European cathedrals. Built in the late Qing dynasty, it offers a serene spiritual start.
+</p>
+<div id="more-description" style="display:none;">
+<p>
+<strong>Hankou Riverside Promenade:</strong> Take a peaceful walk along the wide riverside boulevard. Watch boats drift by, see the skyline unfold, and feel the pulse of a river that shaped a city.
+</p>
+<p>
+<strong>Jiqing Folk Street: </strong>Step into a street full of local color—opera murals, street food, folk musicians, and traditional crafts. This is real Wuhan life, served with a side of nostalgia.
+</p>
+<p>
+<strong>Hubei Provincial Museum: </strong>Home to the world-famous Zenghouyi bronze bells and ancient swords, this museum brings to life the grandeur and elegance of central China's early civilizations.
+</p>
+<p>
+<strong>Han Street Walk &amp; Han Show Theater Exterior: </strong>Take a relaxed stroll through the European-style boulevard. Admire the red lantern-shaped theater designed by Cirque du Soleil’s creators—a symbol of modern Wuhan.
+</p>
+<p>
+<strong>Tanhualin Historic Quarter &amp; Hands-on Craft Session:</strong> Explore a reborn old street full of coffee shops, studios, graffiti, and bookstores. This is where young Wuhan dreams in color, tucked inside centuries-old bricks. Get creative in a local artisan’s studio. Choose to paint a lacquer fan or stitch a fragrant sachet with traditional Chinese herbs—a unique souvenir you make yourself.
+</p>
+<p>
+<strong>Yellow Crane Tower View &amp; Qingchuan Pavilion:</strong> View the iconic tower from across the river, then walk part of the bridge for breathtaking city and river views. End the day at the poetic Qingchuan Pavilion facing the Yangtze. With the river glowing gold in sunset light, it’s the perfect scene to wrap up your Wuhan adventure.
+</p>
+</div>
+<button id="see-more-btn" style="background:#003366;color:#fff;border:none;padding:0.5rem 1rem;border-radius:5px;cursor:pointer;margin-top:1rem;">
+          See more
+        </button>
+</section>
+<!-- Includes -->
+<section class="includes">
+<h2>Includes</h2>
+<ul>
+  <li>Convenient Pickup: Pickup and drop-off from anywhere in Wuhan city. Your dedicated staff will confirm pickup details the evening before.</li>
+  <li>Comfortable Transportation: Relax in a well-maintained private vehicle (from 5-seaters to 9-seaters).</li>
+  <li>Group Size: 1-6 people (larger groups may inquire about custom options).</li>
+  <li>Language: Guided in your selected language for a smooth experience.</li>
+  <li>Tour Duration: Approximately 10 hours.</li>
+  <li>Tickets included: Hubei Provincial Museum (except Mondays), East Lake Tingtao Scenic Area (if on Mondays), Hands-on Craft Session (Lacquer fan or Fragrant sachet)</li>
+  <li>Snacks &amp; drinks: we will provide two local snacks and drinks during the day.</li>
+</ul>
+</section>
+<!-- Not Included -->
+<section class="not-includes">
+<h2>Not Included</h2>
+<ul>
+  <li>Lunch: not included. Guests will be provided some recommendations of local delicacies.</li>
+  <li>Tips: Not included, but our guests can decide at their discretionary.</li>
+</ul>
+</section>
+<!-- Not Suitable For -->
+<section class="not-suitable">
+<h2>Not Suitable For</h2>
+<ul>
+<li>Wheelchair users</li>
+<li>People with mobility impairments</li>
+</ul>
+</section>
+<!-- Important Information -->
+<section class="important-info">
+<h2>Important Information</h2>
+<ul>
+<li>Wear comfortable walking shoes</li>
+<li>Bring sun protection and rain gear as needed</li>
+<li>Tour operates rain or shine</li></ul>
+</section>
+</main>
+</div>
+<footer>
+        © 2025 Skymatz Resources | All Rights Reserved
+    </footer>
+<script>
+      let galleryIndex = 0;
+      const galleryImgs = document.querySelectorAll('.gallery-img');
+      const totalImgs = galleryImgs.length;
+      
+      function showImages(start = 0) {
+        galleryImgs.forEach((img, i) => {
+          img.style.display = (i >= start && i < start + 4) ? 'block' : 'none';
+        });
+        galleryIndex = start;
+      }
+      showImages();
+      
+      function showNextImages() {
+        if (galleryIndex + 4 < totalImgs) showImages(galleryIndex + 1);
+      }
+      function showPrevImages() {
+        if (galleryIndex > 0) showImages(galleryIndex - 1);
+      }
+      
+      // Lightbox
+      let currentLightbox = 0;
+      galleryImgs.forEach((a, i) => {
+        a.onclick = function(e) {
+          e.preventDefault();
+          openLightbox(i);
+        }
+      });
+      
+      function openLightbox(idx) {
+        document.getElementById('lightbox-modal').style.display = 'flex';
+        showLightboxImg(idx);
+      }
+      function closeLightbox() {
+        document.getElementById('lightbox-modal').style.display = 'none';
+      }
+      function showLightboxImg(idx) {
+        currentLightbox = idx;
+        document.getElementById('lightbox-img').src = galleryImgs[idx].href;
+      }
+      function changeLightbox(dir) {
+        let newIdx = currentLightbox + dir;
+        if (newIdx < 0) newIdx = totalImgs - 1;
+        if (newIdx >= totalImgs) newIdx = 0;
+        showLightboxImg(newIdx);
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const dateInput = document.getElementById('date');
+        const now = new Date();
+        now.setDate(now.getDate() + 1); // Add 1 day for tomorrow
+        const yyyy = now.getFullYear();
+        const mm = String(now.getMonth() + 1).padStart(2, '0');
+        const dd = String(now.getDate()).padStart(2, '0');
+        const minDate = `${yyyy}-${mm}-${dd}`;
+        dateInput.setAttribute('min', minDate);
+      });
+
+
+      const priceTable = {
+        1: 280,
+        2: 160,
+        3: 120,
+        4: 110,
+        5: 105,
+        6: 95
+      };
+
+      const participantsSelect = document.getElementById('participants');
+      const totalPriceSpan = document.getElementById('total-price');
+      const pricePerPersonSpan = document.getElementById('price-per-person');
+
+      function updateTotalPrice() {
+        const num = parseInt(participantsSelect.value, 10);
+        const perPerson = priceTable[num] || 0;
+        pricePerPersonSpan.textContent = perPerson;
+        totalPriceSpan.textContent = perPerson * num;
+      }
+
+      participantsSelect.addEventListener('change', updateTotalPrice);
+
+      // Initialize on page load
+      updateTotalPrice();
+
+      document.getElementById('toggle-booking').addEventListener('click', function() {
+        const form = document.getElementById('booking-form');
+        if (form.style.display === 'none' || form.style.display === '') {
+          form.style.display = 'block';
+          this.textContent = 'Book';
+        } else {
+          // Redirect to payment link when "Book" is pressed
+          window.location.href = 'https://your-payment-link.com';
+        }
+      });
+
+      // Make slot boxes selectable and update button text
+      document.querySelectorAll('.slot-box').forEach(box => {
+        box.addEventListener('click', function() {
+          document.querySelectorAll('.slot-box').forEach(b => b.classList.remove('selected'));
+          this.classList.add('selected');
+          document.getElementById('slot').value = this.getAttribute('data-value');
+          // Change button text to "Book"
+          document.getElementById('toggle-booking').textContent = 'Book';
+        });
+      });
+
+      // Optionally, set the first slot as selected on page load
+      document.querySelector('.slot-box').classList.add('selected');
+
+      document.getElementById('show-map').onclick = function(e) {
+        e.preventDefault();
+        document.getElementById('map-modal').style.display = 'flex';
+      };
+      document.getElementById('close-map').onclick = function() {
+        document.getElementById('map-modal').style.display = 'none';
+      };
+
+      function updateMap() {
+        const query = document.getElementById('map-search').value.trim();
+        const iframe = document.getElementById('map-iframe');
+        if (query) {
+          iframe.src = 'https://www.google.com/maps?q=place:' + encodeURIComponent(query) + '&output=embed';
+        }
+      }
+
+      document.getElementById('map-search-btn').onclick = updateMap;
+      document.getElementById('map-search').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          updateMap();
+        }
+      });
+
+      const seeMoreBtn = document.getElementById('see-more-btn');
+      const moreDesc = document.getElementById('more-description');
+      let expanded = false;
+
+      seeMoreBtn.addEventListener('click', function() {
+        expanded = !expanded;
+        if (expanded) {
+          moreDesc.style.display = 'block';
+          seeMoreBtn.textContent = 'Show less';
+        } else {
+          moreDesc.style.display = 'none';
+          seeMoreBtn.textContent = 'See more';
+        }
+      });
+      </script>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Book a Tour</title>
+<link href="../../tour_style.css" rel="stylesheet"/>
+</head>
+<body>
+<header>
+<h1>Skymatz Resources</h1>
+<p>Your Journey, Our Expertise</p>
+</header>
+<nav>
+<a href="../../index.html">Home</a>
+<a href="../../about.html">About Us</a>
+<a href="../../destination.html">Destination</a>
+<a href="../../calendar.html">Book Tour</a>
+<a href="../../contact.html">Contact</a>
+</nav>
+<div class="content">
+<main>
+<!-- About this activity -->
+<section class="about-activity">
+<div class="tour-label">Private tour</div>
+<h1>Chengdu: No Chili, No Problem, Non-Spicy Foodie Adventure</h1>
+<div class="image-gallery">
+<a class="gallery-img" href="../../picture/chengdufood/WechatIMG3067.jpg" target="_blank"><img alt="chengdufood 1" src="../../picture/chengdufood/WechatIMG3067.jpg"/></a>
+<a class="gallery-img" href="../../picture/chengdufood/WechatIMG3068.jpg" target="_blank"><img alt="chengdufood 2" src="../../picture/chengdufood/WechatIMG3068.jpg"/></a>
+<a class="gallery-img" href="../../picture/chengdufood/WechatIMG3094.jpg" target="_blank"><img alt="chengdufood 3" src="../../picture/chengdufood/WechatIMG3094.jpg"/></a>
+<a class="gallery-img" href="../../picture/chengdufood/WechatIMG3095.jpg" target="_blank"><img alt="chengdufood 4" src="../../picture/chengdufood/WechatIMG3095.jpg"/></a>
+<a class="gallery-img" href="../../picture/chengdufood/WechatIMG3096.jpg" style="display:none;" target="_blank"><img alt="chengdufood 5" src="../../picture/chengdufood/WechatIMG3096.jpg"/></a>
+<a class="gallery-img" href="../../picture/chengdufood/WechatIMG3097.jpg" style="display:none;" target="_blank"><img alt="chengdufood 6" src="../../picture/chengdufood/WechatIMG3097.jpg"/></a>
+<a class="gallery-img" href="../../picture/chengdufood/WechatIMG3098.jpg" style="display:none;" target="_blank"><img alt="chengdufood 7" src="../../picture/chengdufood/WechatIMG3098.jpg"/></a>
+<a class="gallery-img" href="../../picture/chengdufood/WechatIMG3099.jpg" style="display:none;" target="_blank"><img alt="chengdufood 8" src="../../picture/chengdufood/WechatIMG3099.jpg"/></a>
+<a class="gallery-img" href="../../picture/chengdufood/WechatIMG3100.jpg" style="display:none;" target="_blank"><img alt="chengdufood 9" src="../../picture/chengdufood/WechatIMG3100.jpg"/></a>
+<button class="gallery-next" onclick="showNextImages()">❯</button>
+<button class="gallery-prev" onclick="showPrevImages()">❮</button>
+</div>
+<!-- Lightbox Modal -->
+<div class="lightbox-modal" id="lightbox-modal" style="display:none;">
+<span class="lightbox-close" onclick="closeLightbox()">×</span>
+<img class="lightbox-content" id="lightbox-img"/>
+<a class="lightbox-prev" onclick="changeLightbox(-1)">❮</a>
+<a class="lightbox-next" onclick="changeLightbox(1)">❯</a>
+</div>
+<p>Chengdu is known for spicy food, but there’s also a delicious non-spicy side! Try Bao buns, Bean Soup Rice, Ice Jelly, and more on our Non-Spicy Food Tour. Join to taste Chengdu without the heat!</p>
+</section>
+<!-- Booking Section -->
+<aside class="booking-widget">
+<h2>Select participants and date</h2>
+<div class="booking-row">
+<select id="participants" name="participants">
+  <option value="1">1 Adult</option>
+  <option value="2">2 Adults</option>
+  <option value="3">3 Adults</option>
+  <option value="4">4 Adults</option>
+  <option value="5">5 Adults</option>
+  <option value="6">6 Adults</option>
+  <option value="7">7 Adults</option>
+  <option value="8">8 Adults</option>
+  <option value="9">9 Adults</option>
+  <option value="10">10 Adults</option>
+</select>
+<input id="date" name="date" type="date"/>
+<select id="language" name="language">
+<option>English</option>
+<option>Spanish</option>
+<option>Korean</option>
+<option>Japanese</option>
+<option>Chinese</option>
+</select>
+<button id="toggle-booking" type="button">Availability</button>
+</div>
+<form id="booking-form" style="display:none;">
+<div class="slot-row">
+<label style="margin-right:1rem;">Starting Slot Time:</label>
+<div class="slot-options">
+  <div class="slot-box" data-value="16:00">16:00</div>
+  <div class="slot-box" data-value="16:30">16:30</div>
+  <div class="slot-box" data-value="17:00">17:00</div>
+</div>
+</div>
+<span class="pickup-note">Please provide your <a href="#" id="show-map" style="color:#90caf9; text-decoration:underline;">pickup address</a>  on booking page </span>
+<div id="map-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); align-items:center; justify-content:center; z-index:9999;">
+<div style="background:#fff; border-radius:8px; padding:1rem; max-width:90vw; max-height:80vh; position:relative;">
+<span id="close-map" style="position:absolute; top:0.5rem; right:1rem; cursor:pointer; font-size:1.5rem;">×</span>
+<div style="margin-bottom:0.5rem;">
+<input id="map-search" placeholder="Search address..." style="width: 250px; padding: 0.3rem; border-radius: 4px; border: 1px solid #ccc;" type="text"/>
+<button id="map-search-btn" style="padding: 0.3rem 0.7rem; border-radius: 4px; border: none; background: #00897b; color: #fff; font-weight: bold; cursor: pointer;">Search</button>
+</div>
+<iframe allowfullscreen="" height="300" id="map-iframe" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Chengdu&amp;output=embed" style="border:0;" width="400"></iframe>
+</div>
+</div>
+<input id="slot" name="slot" type="hidden" value="08:00"/>
+<div style="margin-top:1rem;">
+<div class="price-row" style="margin-top:1rem;">
+<span>Price per person: £<span id="price-per-person">190</span></span>
+<span style="margin-left:auto;"><strong>Total Price: £<span id="total-price">190</span></strong></span>
+<p></p>
+</div>
+</div></form>
+</aside>
+<!-- Highlights -->
+<section class="highlights">
+<h2>Highlights</h2>
+<ul>
+  <li>Taste classic non-spicy Chengdu snacks from iconic street stalls</li>
+  <li>Enjoy traditional sweet treats like Milky Pull-Candy and ice jelly</li>
+  <li>Stroll through Kuanzhai Alley’s historic Qing-style courtyards</li>
+  <li>Try rare comfort food like bean soup rice &amp; fermented rice wine</li>
+  <li>End at lively Kuixinglou food street for night views and photos</li>
+</ul>
+</section>
+<!-- Full Description -->
+<section class="full-description">
+<h2>Full Description</h2>
+<p><strong>Stop 1 - Siu-mai &amp; Brown Sugar Jelly Cake:</strong> A true local favorite and a great start to your food journey! Try the translucent, thin-skinned “Crystal Siu-mai” (steamed sticky rice dumpling) — savory, chewy, and full of flavor. Refresh your palate with a bowl of Brown Sugar Jelly Cake, soft and chilled, with just the right sweetness.
+</p>
+<div id="more-description" style="display:none;">
+  <p>
+  <strong>Guided Walk - Kuan-Zhai Alley (Wide-Narrow Lane):</strong> One of Chengdu’s most famous heritage streets, mixing Qing-dynasty charm and modern life. Explore traditional courtyards, old teahouses, folk crafts, and Sichuan opera masks. It’s the perfect spot for cultural photos and learning about Chengdu’s laid-back lifestyle.
+</p>
+  <p>
+  <strong>Stop 2 - Handmade Candy Shop:</strong> More than just a candy shop—it’s a nostalgic sweet time machine! Watch live demonstrations of traditional candy hammering. Sample a mix of Nougat Milk Candy, Handmade Pork Jerky, and Milky Pull-Candy. Great for picking up gifts or taking retro-style photos.
+</p>
+<p>
+<strong>Stop 3 - Doutangfan (Bean Soup Rice):</strong> A hidden local gem serving a comforting dish unique to Chengdu. Try their signature Clay Pot Vegetarian Bean Soup with Rice, a heartwarming dish packed with soft soybeans and rich flavor. Light, healthy, and rarely found outside of Sichuan.
+</p>
+<p>
+<strong>Guided Walk - Pao Tong Shu Street:</strong> A quiet, artsy alley filled with personality. Browse indie shops, handmade crafts, vintage boutiques, and design studios. A favorite hangout for young locals—laid-back, photogenic, and full of surprises.
+</p>
+<p>
+<strong>Stop 4 - Laozao (Fermented Sweet Rice Wine Soup):</strong> Sweet soup lovers, this one’s for you! Sip on a bowl of Fermented Sweet Rice Soup — warm, floral, and cozy. A unique non-spicy dessert traditionally enjoyed during cool evenings.
+</p>
+<p>
+<strong>Stop 5 - Dan Hong Gao (Mini Egg-Puffed Cakes):</strong> A street snack legend in Chengdu—crispy on the edges, fluffy inside. Pick two flavors of Egg-Puffed Cakes (like cheese-bacon, grape &amp; cream, rose jam, red bean). Made-to-order on copper griddles, they’re fun to watch and delicious to eat!
+</p>
+<p>
+<strong>Stop 6 - Bingfen (Ice Jelly):</strong> End on a cooling high with Chengdu’s favorite summer treat. Build your bowl of Bingfen (Ice Jelly) with toppings like brown sugar syrup, peanuts, raisins, and osmanthus. Located in the bustling Kuixinglou Street, a perfect place to continue exploring after the tour.</p>
+</div>
+<button id="see-more-btn" style="background:#003366;color:#fff;border:none;padding:0.5rem 1rem;border-radius:5px;cursor:pointer;margin-top:1rem;">
+          See more
+        </button>
+</section>
+<!-- Includes -->
+<section class="includes">
+<h2>Includes</h2>
+<ul>
+  <li>Language: Guided in your selected language for a smooth experience.</li>
+  <li>Six food stops with multiple tastings at each stop (Examples below):</li>
+  <li>Siu-mai &amp; Brown Sugar Jelly Cake</li>
+  <li>Handmade Candy (Nougat Milk Candy, Handmade Pork Jerky, and Milky Pull-Candy)</li>
+  <li>Doutangfan (Bean Soup Rice)</li>
+  <li>Laozao (Fermented Sweet Rice Wine Soup)</li>
+  <li>Dan Hong Gao (Mini Egg-Puffed Cakes)</li>
+  <li>Bingfen (Ice Jelly)</li>
+  <li>Two guided walks: Kuan-Zhai Alley (Wide-Narrow Lane) &amp; Pao Tong Shu Street</li>
+  <li>Tour Duration: Approximately 3 hours.</li>
+  <li>Group Size: 1-10 people (larger groups may inquire about custom options).</li>
+</ul>
+</section>
+<!-- Not Included -->
+<section class="not-includes">
+<h2>Not Included</h2>
+<ul>
+  <li>Personal expenses (e.g. additional food or drinks not listed)</li>
+  <li>Hotel pickup or drop-off</li>
+  <li>Tips: Not included, but our guests can decide at their discretionary.</li>
+</ul>
+</section>
+<!-- Not Suitable For -->
+<section class="not-suitable">
+<h2>Not Suitable For</h2>
+<ul>
+<li>Wheelchair users</li>
+<li>People with mobility impairments</li>
+</ul>
+</section>
+<!-- Important Information -->
+<section class="important-info">
+<h2>Important Information</h2>
+<ul>
+<li>Wear comfortable walking shoes</li>
+<li>Bring sun protection and rain gear as needed</li>
+<li>Tour operates rain or shine</li></ul>
+</section>
+</main>
+</div>
+<footer>
+        © 2025 Skymatz Resources | All Rights Reserved
+    </footer>
+<script>
+      let galleryIndex = 0;
+      const galleryImgs = document.querySelectorAll('.gallery-img');
+      const totalImgs = galleryImgs.length;
+      
+      function showImages(start = 0) {
+        galleryImgs.forEach((img, i) => {
+          img.style.display = (i >= start && i < start + 4) ? 'block' : 'none';
+        });
+        galleryIndex = start;
+      }
+      showImages();
+      
+      function showNextImages() {
+        if (galleryIndex + 4 < totalImgs) showImages(galleryIndex + 1);
+      }
+      function showPrevImages() {
+        if (galleryIndex > 0) showImages(galleryIndex - 1);
+      }
+      
+      // Lightbox
+      let currentLightbox = 0;
+      galleryImgs.forEach((a, i) => {
+        a.onclick = function(e) {
+          e.preventDefault();
+          openLightbox(i);
+        }
+      });
+      
+      function openLightbox(idx) {
+        document.getElementById('lightbox-modal').style.display = 'flex';
+        showLightboxImg(idx);
+      }
+      function closeLightbox() {
+        document.getElementById('lightbox-modal').style.display = 'none';
+      }
+      function showLightboxImg(idx) {
+        currentLightbox = idx;
+        document.getElementById('lightbox-img').src = galleryImgs[idx].href;
+      }
+      function changeLightbox(dir) {
+        let newIdx = currentLightbox + dir;
+        if (newIdx < 0) newIdx = totalImgs - 1;
+        if (newIdx >= totalImgs) newIdx = 0;
+        showLightboxImg(newIdx);
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const dateInput = document.getElementById('date');
+        const now = new Date();
+        now.setDate(now.getDate() + 1); // Add 1 day for tomorrow
+        const yyyy = now.getFullYear();
+        const mm = String(now.getMonth() + 1).padStart(2, '0');
+        const dd = String(now.getDate()).padStart(2, '0');
+        const minDate = `${yyyy}-${mm}-${dd}`;
+        dateInput.setAttribute('min', minDate);
+      });
+
+
+      const priceTable = {
+        1: 190,
+        2: 115,
+        3: 90,
+        4: 80,
+        5: 70,
+        6: 65,
+        7: 60,
+        8: 60,
+        9: 55,
+        10: 55
+      };
+
+      const participantsSelect = document.getElementById('participants');
+      const totalPriceSpan = document.getElementById('total-price');
+      const pricePerPersonSpan = document.getElementById('price-per-person');
+
+      function updateTotalPrice() {
+        const num = parseInt(participantsSelect.value, 10);
+        const perPerson = priceTable[num] || 0;
+        pricePerPersonSpan.textContent = perPerson;
+        totalPriceSpan.textContent = perPerson * num;
+      }
+
+      participantsSelect.addEventListener('change', updateTotalPrice);
+
+      // Initialize on page load
+      updateTotalPrice();
+
+      document.getElementById('toggle-booking').addEventListener('click', function() {
+        const form = document.getElementById('booking-form');
+        if (form.style.display === 'none' || form.style.display === '') {
+          form.style.display = 'block';
+          this.textContent = 'Book';
+        } else {
+          // Redirect to payment link when "Book" is pressed
+          window.location.href = 'https://your-payment-link.com';
+        }
+      });
+
+      // Make slot boxes selectable and update button text
+      document.querySelectorAll('.slot-box').forEach(box => {
+        box.addEventListener('click', function() {
+          document.querySelectorAll('.slot-box').forEach(b => b.classList.remove('selected'));
+          this.classList.add('selected');
+          document.getElementById('slot').value = this.getAttribute('data-value');
+          // Change button text to "Book"
+          document.getElementById('toggle-booking').textContent = 'Book';
+        });
+      });
+
+      // Optionally, set the first slot as selected on page load
+      document.querySelector('.slot-box').classList.add('selected');
+
+      document.getElementById('show-map').onclick = function(e) {
+        e.preventDefault();
+        document.getElementById('map-modal').style.display = 'flex';
+      };
+      document.getElementById('close-map').onclick = function() {
+        document.getElementById('map-modal').style.display = 'none';
+      };
+
+      function updateMap() {
+        const query = document.getElementById('map-search').value.trim();
+        const iframe = document.getElementById('map-iframe');
+        if (query) {
+          iframe.src = 'https://www.google.com/maps?q=place:' + encodeURIComponent(query) + '&output=embed';
+        }
+      }
+
+      document.getElementById('map-search-btn').onclick = updateMap;
+      document.getElementById('map-search').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          updateMap();
+        }
+      });
+
+      const seeMoreBtn = document.getElementById('see-more-btn');
+      const moreDesc = document.getElementById('more-description');
+      let expanded = false;
+
+      seeMoreBtn.addEventListener('click', function() {
+        expanded = !expanded;
+        if (expanded) {
+          moreDesc.style.display = 'block';
+          seeMoreBtn.textContent = 'Show less';
+        } else {
+          moreDesc.style.display = 'none';
+          seeMoreBtn.textContent = 'See more';
+        }
+      });
+      </script>
+</body>
+</html>

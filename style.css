@@ -59,6 +59,12 @@ main {
     justify-content: center;
 }
 
+@media (max-width: 600px) {
+    .your-city-selection-class {
+      grid-template-columns: 1fr;
+    }
+  }
+
 .city-item {
     display: flex;
     align-items: center;
@@ -139,7 +145,7 @@ main {
     border-radius: 5px;
     text-align: left;
     overflow-y: auto; /* Add scroll if the content exceeds the box height */
-    max-height: 400px; /* Limit the height of the city list box */
+    max-height: 450px; /* Limit the height of the city list box */
     max-width: 200px; /* Limit the height of the city list box */
 }
 
@@ -178,6 +184,12 @@ main {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+  }
+
+  @media (max-width: 600px) {
+    .tour-grid {
+      grid-template-columns: 1fr;
+    }
   }
   
   .tour-item {

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Book a Tour</title>
+<link href="../../tour_style.css" rel="stylesheet"/>
+</head>
+<body>
+<header>
+<h1>Skymatz Resources</h1>
+<p>Your Journey, Our Expertise</p>
+</header>
+<nav>
+<a href="../../index.html">Home</a>
+<a href="../../about.html">About Us</a>
+<a href="../../destination.html">Destination</a>
+<a href="../../calendar.html">Book Tour</a>
+<a href="../../contact.html">Contact</a>
+</nav>
+<div class="content">
+<main>
+<!-- About this activity -->
+<section class="about-activity">
+<div class="tour-label">Private tour</div>
+<h1>Changsha: No Chili, No Problem, Non-Spicy Foodie Adventure</h1>
+<div class="image-gallery">
+<a class="gallery-img" href="../../picture/changshafood/WechatIMG3076.jpg" target="_blank"><img alt="changshafood 1" src="../../picture/changshafood/WechatIMG3076.jpg"/></a>
+<a class="gallery-img" href="../../picture/changshafood/WechatIMG3084.jpg" target="_blank"><img alt="changshafood 2" src="../../picture/changshafood/WechatIMG3084.jpg"/></a>
+<a class="gallery-img" href="../../picture/changshafood/WechatIMG3085.jpg" target="_blank"><img alt="changshafood 3" src="../../picture/changshafood/WechatIMG3085.jpg"/></a>
+<a class="gallery-img" href="../../picture/changshafood/WechatIMG3086.jpg" target="_blank"><img alt="changshafood 4" src="../../picture/changshafood/WechatIMG3086.jpg"/></a>
+<a class="gallery-img" href="../../picture/changshafood/WechatIMG3087.jpg" style="display:none;" target="_blank"><img alt="changshafood 5" src="../../picture/changshafood/WechatIMG3087.jpg"/></a>
+<a class="gallery-img" href="../../picture/changshafood/WechatIMG3088.jpg" style="display:none;" target="_blank"><img alt="changshafood 6" src="../../picture/changshafood/WechatIMG3088.jpg"/></a>
+<a class="gallery-img" href="../../picture/changshafood/WechatIMG3089.jpg" style="display:none;" target="_blank"><img alt="changshafood 7" src="../../picture/changshafood/WechatIMG3089.jpg"/></a>
+<a class="gallery-img" href="../../picture/changshafood/WechatIMG3090.jpg" style="display:none;" target="_blank"><img alt="changshafood 8" src="../../picture/changshafood/WechatIMG3090.jpg"/></a>
+<a class="gallery-img" href="../../picture/changshafood/WechatIMG3091.jpg" style="display:none;" target="_blank"><img alt="changshafood 9" src="../../picture/changshafood/WechatIMG3091.jpg"/></a>
+<button class="gallery-next" onclick="showNextImages()">❯</button>
+<button class="gallery-prev" onclick="showPrevImages()">❮</button>
+</div>
+<!-- Lightbox Modal -->
+<div class="lightbox-modal" id="lightbox-modal" style="display:none;">
+<span class="lightbox-close" onclick="closeLightbox()">×</span>
+<img class="lightbox-content" id="lightbox-img"/>
+<a class="lightbox-prev" onclick="changeLightbox(-1)">❮</a>
+<a class="lightbox-next" onclick="changeLightbox(1)">❯</a>
+</div>
+<p>Changsha is known for spicy food, but there’s also a delicious non-spicy side! Explore Changsha’s historic alleys and retro streets while tasting non-spicy local favorites.</p>
+</section>
+<!-- Booking Section -->
+<aside class="booking-widget">
+<h2>Select participants and date</h2>
+<div class="booking-row">
+<select id="participants" name="participants">
+  <option value="1">1 Adult</option>
+  <option value="2">2 Adults</option>
+  <option value="3">3 Adults</option>
+  <option value="4">4 Adults</option>
+  <option value="5">5 Adults</option>
+  <option value="6">6 Adults</option>
+  <option value="7">7 Adults</option>
+  <option value="8">8 Adults</option>
+  <option value="9">9 Adults</option>
+  <option value="10">10 Adults</option>
+</select>
+<input id="date" name="date" type="date"/>
+<select id="language" name="language">
+<option>English</option>
+<option>Spanish</option>
+<option>Korean</option>
+<option>Japanese</option>
+<option>Chinese</option>
+</select>
+<button id="toggle-booking" type="button">Availability</button>
+</div>
+<form id="booking-form" style="display:none;">
+<div class="slot-row">
+<label style="margin-right:1rem;">Starting Slot Time:</label>
+<div class="slot-options">
+  <div class="slot-box" data-value="16:00">16:00</div>
+  <div class="slot-box" data-value="16:30">16:30</div>
+  <div class="slot-box" data-value="17:00">17:00</div>
+</div>
+</div>
+<span class="pickup-note">Please provide your <a href="#" id="show-map" style="color:#90caf9; text-decoration:underline;">pickup address</a>  on booking page </span>
+<div id="map-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); align-items:center; justify-content:center; z-index:9999;">
+<div style="background:#fff; border-radius:8px; padding:1rem; max-width:90vw; max-height:80vh; position:relative;">
+<span id="close-map" style="position:absolute; top:0.5rem; right:1rem; cursor:pointer; font-size:1.5rem;">×</span>
+<div style="margin-bottom:0.5rem;">
+<input id="map-search" placeholder="Search address..." style="width: 250px; padding: 0.3rem; border-radius: 4px; border: 1px solid #ccc;" type="text"/>
+<button id="map-search-btn" style="padding: 0.3rem 0.7rem; border-radius: 4px; border: none; background: #00897b; color: #fff; font-weight: bold; cursor: pointer;">Search</button>
+</div>
+<iframe allowfullscreen="" height="300" id="map-iframe" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Changsha&amp;output=embed" style="border:0;" width="400"></iframe>
+</div>
+</div>
+<input id="slot" name="slot" type="hidden" value="16:00"/>
+<div style="margin-top:1rem;">
+<div class="price-row" style="margin-top:1rem;">
+<span>Price per person: £<span id="price-per-person">190</span></span>
+<span style="margin-left:auto;"><strong>Total Price: £<span id="total-price">190</span></strong></span>
+<p></p>
+</div>
+</div></form>
+</aside>
+<!-- Highlights -->
+<section class="highlights">
+<h2>Highlights</h2>
+<ul><li>Taste Changsha without the chili! 100% mild-friendly options</li><li>Discover Taiping Old Street history with Qing buildings and artisan storefronts</li><li>Taste sweet rice balls and beef pies at local-favorite hidden snack stalls</li><li>Step into 1980s nostalgia at Wenheyou retro food court with Shengjian buns</li><li>End the evening with rice noodles, crispy meatballs, and a riverfront night view</li></ul>
+</section>
+<!-- Full Description -->
+<section class="full-description">
+<h2>Full Description</h2>
+<p><strong>Taiping Old Street Gathering Point:</strong> Start at one of Changsha's most historic walking streets, surrounded by Qing-style buildings and traditional shopfronts.
+</p>
+<div id="more-description" style="display:none;">
+  <p>
+  <strong>Sweet &amp; Savory Street Treats:</strong> Tangyou Tuotuo (Sticky rice balls drenched in syrup, golden and gooey), and Tianma Beef Pie (a flaky, savory pastry with juicy beef filling).
+</p>
+  <p>
+  <strong>Taiping Old Street City Walk :</strong> A light stroll with historical commentary: Former Lisheng Salt Company, Historic Qianyi Grain Depot, Meifu Foreign Firm (old oil company), and the Changsha Folk Art Museum.
+</p>
+<p>
+<strong>Midway Refreshments: </strong>Grab a bowl of homemade ice jelly—light, fruity, and topped with raisins or hawthorn for a cool break from the city heat.
+</p>
+<p>
+<strong>Wenheyou Super Mall: </strong>Step into a retro time capsule at Wenheyou—a reconstructed 1980s-style street market and food court. Expect neon lights, vintage signs, chaotic alleys, and all kinds of local street food vendors. Great spot to Shengjian Bun (Crispy-bottom, soup-filled pan-fried buns) and Sweet Fermented Rice Wine (Sweet glutinous rice wine with osmanthus aroma).
+</p>
+<p>
+<strong>Changsha Classic Comfort:</strong> Enjoy a bowl of original broth pork or beef rice noodles, add crispy fried meatballs and a mild local herbal drink to finish your food tasting.
+</p>
+<p>
+<strong>Scenic Ending - Du Fu Pavilion by Night:</strong> Wind down at the riverside with the glowing silhouette of Du Fu Jiang Pavilion, one of Changsha’s finest spots for a peaceful night view. A perfect ending to a warm and flavorful walk.</p>
+</div>
+<button id="see-more-btn" style="background:#003366;color:#fff;border:none;padding:0.5rem 1rem;border-radius:5px;cursor:pointer;margin-top:1rem;">
+          See more
+        </button>
+</section>
+<!-- Includes -->
+<section class="includes">
+<h2>Includes</h2>
+<ul>
+  <li>Language: Guided in your selected language for a smooth experience.</li>
+  <li>Four food stops with multiple tastings at each stop (Examples below):</li>
+  <li>Tangyou Tuotuo &amp; Tianma Beef Pie</li>
+  <li>Homemade ice jelly</li>
+  <li>Shengjian Bun &amp; Sweet Fermented Rice Wine</li>
+  <li>Pork or beef rice noodles &amp; Meatballs &amp; Herbal Drink</li>
+  <li>Two guided walks: Taiping Old Street &amp; Du Fu Pavilion</li>
+  <li>Tour Duration: Approximately 3 hours.</li>
+  <li>Group Size: 1-10 people (larger groups may inquire about custom options).</li>
+</ul>
+</section>
+<!-- Not Included -->
+<section class="not-includes">
+<h2>Not Included</h2>
+<ul>
+  <li>Personal expenses (e.g. additional food or drinks not listed)</li>
+  <li>Hotel pickup or drop-off</li>
+  <li>Tips: Not included, but our guests can decide at their discretionary.</li>
+</ul>
+</section>
+<!-- Not Suitable For -->
+<section class="not-suitable">
+<h2>Not Suitable For</h2>
+<ul>
+<li>Wheelchair users</li>
+<li>People with mobility impairments</li>
+</ul>
+</section>
+<!-- Important Information -->
+<section class="important-info">
+<h2>Important Information</h2>
+<ul>
+<li>Wear comfortable walking shoes</li>
+<li>Bring sun protection and rain gear as needed</li>
+<li>Tour operates rain or shine</li></ul>
+</section>
+</main>
+</div>
+<footer>
+        © 2025 Skymatz Resources | All Rights Reserved
+    </footer>
+<script>
+      let galleryIndex = 0;
+      const galleryImgs = document.querySelectorAll('.gallery-img');
+      const totalImgs = galleryImgs.length;
+      
+      function showImages(start = 0) {
+        galleryImgs.forEach((img, i) => {
+          img.style.display = (i >= start && i < start + 4) ? 'block' : 'none';
+        });
+        galleryIndex = start;
+      }
+      showImages();
+      
+      function showNextImages() {
+        if (galleryIndex + 4 < totalImgs) showImages(galleryIndex + 1);
+      }
+      function showPrevImages() {
+        if (galleryIndex > 0) showImages(galleryIndex - 1);
+      }
+      
+      // Lightbox
+      let currentLightbox = 0;
+      galleryImgs.forEach((a, i) => {
+        a.onclick = function(e) {
+          e.preventDefault();
+          openLightbox(i);
+        }
+      });
+      
+      function openLightbox(idx) {
+        document.getElementById('lightbox-modal').style.display = 'flex';
+        showLightboxImg(idx);
+      }
+      function closeLightbox() {
+        document.getElementById('lightbox-modal').style.display = 'none';
+      }
+      function showLightboxImg(idx) {
+        currentLightbox = idx;
+        document.getElementById('lightbox-img').src = galleryImgs[idx].href;
+      }
+      function changeLightbox(dir) {
+        let newIdx = currentLightbox + dir;
+        if (newIdx < 0) newIdx = totalImgs - 1;
+        if (newIdx >= totalImgs) newIdx = 0;
+        showLightboxImg(newIdx);
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const dateInput = document.getElementById('date');
+        const now = new Date();
+        now.setDate(now.getDate() + 1); // Add 1 day for tomorrow
+        const yyyy = now.getFullYear();
+        const mm = String(now.getMonth() + 1).padStart(2, '0');
+        const dd = String(now.getDate()).padStart(2, '0');
+        const minDate = `${yyyy}-${mm}-${dd}`;
+        dateInput.setAttribute('min', minDate);
+      });
+
+
+      const priceTable = {
+        1: 190,
+        2: 115,
+        3: 90,
+        4: 80,
+        5: 70,
+        6: 65,
+        7: 60,
+        8: 60,
+        9: 55,
+        10: 55
+      };
+
+      const participantsSelect = document.getElementById('participants');
+      const totalPriceSpan = document.getElementById('total-price');
+      const pricePerPersonSpan = document.getElementById('price-per-person');
+
+      function updateTotalPrice() {
+        const num = parseInt(participantsSelect.value, 10);
+        const perPerson = priceTable[num] || 0;
+        pricePerPersonSpan.textContent = perPerson;
+        totalPriceSpan.textContent = perPerson * num;
+      }
+
+      participantsSelect.addEventListener('change', updateTotalPrice);
+
+      // Initialize on page load
+      updateTotalPrice();
+
+      document.getElementById('toggle-booking').addEventListener('click', function() {
+        const form = document.getElementById('booking-form');
+        if (form.style.display === 'none' || form.style.display === '') {
+          form.style.display = 'block';
+          this.textContent = 'Book';
+        } else {
+          // Redirect to payment link when "Book" is pressed
+          window.location.href = 'https://your-payment-link.com';
+        }
+      });
+
+      // Make slot boxes selectable and update button text
+      document.querySelectorAll('.slot-box').forEach(box => {
+        box.addEventListener('click', function() {
+          document.querySelectorAll('.slot-box').forEach(b => b.classList.remove('selected'));
+          this.classList.add('selected');
+          document.getElementById('slot').value = this.getAttribute('data-value');
+          // Change button text to "Book"
+          document.getElementById('toggle-booking').textContent = 'Book';
+        });
+      });
+
+      // Optionally, set the first slot as selected on page load
+      document.querySelector('.slot-box').classList.add('selected');
+
+      document.getElementById('show-map').onclick = function(e) {
+        e.preventDefault();
+        document.getElementById('map-modal').style.display = 'flex';
+      };
+      document.getElementById('close-map').onclick = function() {
+        document.getElementById('map-modal').style.display = 'none';
+      };
+
+      function updateMap() {
+        const query = document.getElementById('map-search').value.trim();
+        const iframe = document.getElementById('map-iframe');
+        if (query) {
+          iframe.src = 'https://www.google.com/maps?q=place:' + encodeURIComponent(query) + '&output=embed';
+        }
+      }
+
+      document.getElementById('map-search-btn').onclick = updateMap;
+      document.getElementById('map-search').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          updateMap();
+        }
+      });
+
+      const seeMoreBtn = document.getElementById('see-more-btn');
+      const moreDesc = document.getElementById('more-description');
+      let expanded = false;
+
+      seeMoreBtn.addEventListener('click', function() {
+        expanded = !expanded;
+        if (expanded) {
+          moreDesc.style.display = 'block';
+          seeMoreBtn.textContent = 'Show less';
+        } else {
+          moreDesc.style.display = 'none';
+          seeMoreBtn.textContent = 'See more';
+        }
+      });
+      </script>
+</body>
+</html>
