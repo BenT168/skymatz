@@ -102,12 +102,17 @@ main {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     text-align: center;
-    width: 300px; /* Fixed width */
+    width: 350px; /* Fixed width */
+    height: 600px; /* Fixed height for uniformity */
     margin: auto; /* Center items */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensure content is spaced evenly */
   }
   .tour-item img {
     max-width: 100%;
-    height: auto;
+    height: 300px; /* Fixed height for images */
+    object-fit: cover; /* Ensures the image fits within the fixed height */
     border-radius: 5px;
   }
   
@@ -122,7 +127,7 @@ main {
   
   .tour-item .btn {
     display: inline-block;
-    margin-top: 10px;
+    margin-top: auto; /* Push the button to the bottom of the tour-item */
     padding: 10px 15px;
     background-color: #004080;
     color: #fff;
@@ -172,4 +177,89 @@ button {
 }
 button:hover {
     background-color: #003366;
+}
+
+.map-and-list-container {
+    display: flex; /* Use flexbox to position map and list side by side */
+    gap: 20px; /* Space between the map and the list */
+    margin: 20px auto;
+    max-width: 800px; /* Adjust container width to fit both map and list */
+    border: 1px solid #ccc; /* Optional border for better visibility */
+    border-radius: 5px;
+    background: #fff; /* Optional background for the container */
+    padding: 10px; /* Add padding inside the container */
+    align-items: flex-start; /* Align items at the top */
+}
+
+.map-container {
+    position: relative; /* Enable positioning of map points */
+    text-align: center;
+}
+
+.map-container img {
+    width: auto; /* Display the image at its original size */
+    max-width: 100%; /* Prevent overflow */
+    height: auto;
+    border-radius: 5px;
+    border: 1px solid #ccc; /* Optional border for better visibility */
+}
+
+
+.map-point {
+    position: absolute; /* Position points on the map */
+    width: 5px; /* Adjust circle size */
+    height: 5px;
+    background-color: black; /* Circle color */
+    border-radius: 50%; /* Make it circular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.map-point a {
+    position: absolute;
+    text-decoration: none;
+    top: 50%; /* Align vertically with the circle */
+    left: 15px; /* Position the name to the right of the circle */
+    transform: translateY(-50%); /* Center the text vertically */
+    font-size: 0.8em;
+    color: black;
+    white-space: nowrap;
+}
+
+.city-list {
+    flex: 1; /* List takes up less space */
+    background: #f9f9f9; /* Light background for the list */
+    padding: 10px; /* Reduce padding to make the box smaller */
+    border-radius: 5px;
+    text-align: left;
+    overflow-y: auto; /* Add scroll if the content exceeds the box height */
+    max-height: 400px; /* Limit the height of the city list box */
+    max-width: 200px; /* Limit the height of the city list box */
+}
+
+.city-list h3 {
+    font-size: 1.2em; /* Reduce font size for better fit */
+    margin-bottom: 10px;
+}
+
+.city-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.city-list li {
+    margin: 5px 0;
+}
+
+.city-list a {
+    text-decoration: none;
+    color: #004080;
+}
+
+.city-list a:hover {
+    text-decoration: underline;
+    color: #003366;
 }
