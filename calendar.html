@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book a Tour</title>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        select {
+          width: 300px;      /* or your preferred width */
+          padding: 0.5rem;
+          border-radius: 5px;
+          border: 1px solid #ccc;
+          font-size: 1rem;
+          box-sizing: border-box;
+          margin-bottom: 1rem;
+        }
+      </style>
 </head>
 <body>
     <header>
@@ -24,13 +39,65 @@
 <p>Select a date and fill in your details to book your preferred tour. We will confirm via email.</p>
 <form action="https://formspree.io/f/xkgbdyke" method="POST">
     <label for="tour">Tour Name:</label><br>
-    <input type="text" id="tour" name="tour" required><br><br>
+    <select id="tour" name="tour" required>
+    <option value="">-- Select a Tour --</option>
+    <option>Changsha: River View, Ancient Hill, Handcraft & Night Market</option>
+    <option>Changsha: No Chili, No Problem, Non-Spicy Foodie Adventure</option>
+    <option>Chengdu Charm: Local Alley, Museum, Handcraft & Night Market</option>
+    <option>Chengdu: No Chili, No Problem, Non-Spicy Foodie Adventure</option>
+    <option>Chongqing: No Chili, No Problem, Non-Spicy Foodie Adventure</option>
+    <option>Chongqing NightGlow: Secret Magic Views, Old Blocks & Snacks</option>
+    <option>From Chongqing: Wulong Fim Locations Full-Day Guided Tour</option>
+    <option>Chongqing: Surreal Urban, Ancient Town, and Secret Viewpoint</option>
+    <option>Chongqing Heritage Tour: Hands-on Crafts & Teahouse Visit</option>
+    <option>From Chongqing: Rongchang Summer Cloth Crafts Heritage Tour</option>
+    <option>Chongqing Bishan: A Day with Wood Museum & Countryside Charm</option>
+    <option>Chongqing Beibei: Scenic Mountain, University & Old Street</option>
+    <option>Waves & Wharfs: Dalian's Chill Soul 1 Day Tour</option>
+    <option>Guangzhou: Historic Blocks, Local Food Market & Night View</option>
+    <option>Yangshuo Unveiled: Immerse in Magic Mountain, Town & Gourmet</option>
+    <option>Guilin Longji: Rice Terrace with Oil Tea Demo & Zhuang Lunch</option>
+    <option>Guilin: Heritage Tour of Ancient Village, Craft & River View</option>
+    <option>Guilin City Essence: Hilltop View, Handicraft & River Cruise</option>
+    <option>Hidden Hangzhou: West Lake, Silk Culture & Artisan Alleyways</option>
+    <option>From Hangzhou: Longwu Tea Village, Longmen Town & Dam Tour</option>
+    <option>Hangzhou to Haining: Tide Park, Folk Museum & Shadow Puppet</option>
+    <option>Hangzhou to Jiaxing: South Lake, Local Snack & Heritage Walk</option>
+    <option>Jingdezhen: Porcelain, Kilns, Art, and Market Tour</option>
+    <option>Nanjing: Green Boulevards, Bookstore Warmth & Scenic River</option>
+    <option>Qingdao Charm: History, Crafts, Offshore View & Night Market</option>
+    <option>Qingdao Night Bites & Hidden Alleys: Local Flavor Walk Feast</option>
+    <option>Shanghai Essentials: Culture, Cuisine, Garden & Night Views</option>
+    <option>Suzhou Slow Life: Gardens, Handicrafts & Pingtan Melody</option>
+    <option>Wuhan Melody: River Legend, Hidden Heritage & Craft Workshop</option>
+    <option>Xiamen City Essence: Sea View, Handicraft & Local Market</option>
+    <option>Xiamen Jimei: Sea View Metro, Nanyang Memory & Sunset Walk</option>
+    <option>Xiamen Food & Culture Walk: Old Streets, Bites & Landmarks</option>
+    <option>From Xiamen: Zhangzhou Tour with Mansions, Old Town & Craft</option>
+    <option>From Xiamen: Quanzhou Heritage Villages & Maritime Silk Tour</option>
+    <option>Xi’An: Terracotta Army Museum, Huaqing Palace, and Perforamce</option>
+    <option>Zhangjiajie: Sky Adventure, and the Paradise in One Day</option>
+    <option>Zhengzhou: Cultural Alleys, Handicraft, and Night Market</option>
+    <option>Zhengzhou to Kaifeng: Museum, Incense Craft and Song Legacy</option>
+    </select><br><br>
     <label for="date">Preferred Date:</label><br>
     <input type="date" id="date" name="date" required><br><br>
     <label for="name">Your Name:</label><br>
     <input type="text" id="name" name="name" required><br><br>
+    <label for="name">Pick Up Location:</label><br>
+    <input type="text" id="location" name="location" required><br><br>
     <label for="email">Email:</label><br>
     <input type="email" id="email" name="email" required><br><br>
+    <label for="email">Number of person:</label><br>
+    <select id="person" name="person" required>
+    <option value="">-- Select number of person --</option>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+    </select><br><br>
     <button type="submit">Book Now</button>
 </form>
 
@@ -38,5 +105,17 @@
     <footer>
         &copy; 2025 Skymatz Resources | All Rights Reserved
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const dateInput = document.getElementById('date');
+          const now = new Date();
+          now.setDate(now.getDate() + 2); // Day after tomorrow
+          const yyyy = now.getFullYear();
+          const mm = String(now.getMonth() + 1).padStart(2, '0');
+          const dd = String(now.getDate()).padStart(2, '0');
+          dateInput.min = `${yyyy}-${mm}-${dd}`;
+        });
+        </script>
 </body>
 </html>

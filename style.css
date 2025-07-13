@@ -28,7 +28,7 @@ nav a:hover {
 .hero {
     background: url('picture/The-Great-Wall-of-China-Beijing-China.jpg') center/cover no-repeat;
     height: 400px;
-    margin: 20px auto;
+    margin: 0 auto;
     max-width: 1200px;
     padding: 20px;
     background-color: #f4f4f4;
@@ -41,8 +41,14 @@ nav a:hover {
     font-weight: bold;
     text-shadow: 2px 2px 4px #000;
 }
+.hero h2 {
+    text-align: center;
+    width: 100%;
+}
 .content {
     padding: 2em;
+    max-width: 800px;
+    margin: 0 auto;
 }
 main {
     max-width: 1200px;
