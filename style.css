@@ -28,6 +28,11 @@ nav a:hover {
 .hero {
     background: url('picture/The-Great-Wall-of-China-Beijing-China.jpg') center/cover no-repeat;
     height: 400px;
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,10 +41,100 @@ nav a:hover {
     font-weight: bold;
     text-shadow: 2px 2px 4px #000;
 }
+.city-selection {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three cities per row */
+    gap: 20px; /* Space between items */
+    margin: 20px auto;
+    max-width: 1200px; /* Same width as the hero section */
+    padding: 20px;
+    justify-content: center;
+}
+
+.city-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: bold;
+    height: 200px; /* Fixed height for uniformity */
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.city-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.city-item h3 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
 .content {
     padding: 2em;
 }
-.tour, form {
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+  
+  .tour-listings h2 {
+    text-align: center;
+    max-width: 1200px;
+    margin-bottom: 20px;
+  }
+  
+  .tour-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .tour-item {
+    background: #fff;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    width: 300px; /* Fixed width */
+    margin: auto; /* Center items */
+  }
+  .tour-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .tour-item h3 {
+    color: #004080;
+    margin: 10px 0;
+  }
+  
+  .tour-item p {
+    color: #666;
+  }
+  
+  .tour-item .btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #004080;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .tour-item .btn:hover {
+    background-color: #003366;
+  }
+  
+form {
     background: white;
     padding: 1.5em;
     margin-bottom: 1.5em;
