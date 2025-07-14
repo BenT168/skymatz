@@ -321,22 +321,14 @@
 
         // Fetch each value
         const tour = params.get('tour');
-        const participants = params.get('participants');
-        const date = params.get('date');
-        const language = params.get('language');
-        const slot = params.get('slot');
 
         // Example: Set the values in your form if the elements exist
         if (tour) document.getElementById('tour').value = tour;
-        if (participants) document.getElementById('participants').value = participants;
-        if (date) document.getElementById('date').value = date;
-        if (language) document.getElementById('language').value = language;
-        if (slot) document.getElementById('slot').value = slot;
 
         // You can also display or use these values elsewhere as needed
-        console.log({ tour, participants, date, language, slot });
+        console.log({ tour});
 
-        ['tour', 'participants', 'date', 'language', 'slot'].forEach(function(id) {
+        ['tour'].forEach(function(id) {
         var el = document.getElementById(id);
         if (el && el.value) {
             if (el.tagName === 'SELECT' || el.type === 'date') {
@@ -412,6 +404,33 @@
 
         // On page load, disable slot if no tour is selected
         updateSlotOptions();
+
+        // Fetch each value
+        const participants = params.get('participants');
+        const date = params.get('date');
+        const language = params.get('language');
+        const slot = params.get('slot');
+
+        // Example: Set the values in your form if the elements exist
+        if (participants) document.getElementById('participants').value = participants;
+        if (date) document.getElementById('date').value = date;
+        if (language) document.getElementById('language').value = language;
+        if (slot) document.getElementById('slot').value = slot;
+
+        // You can also display or use these values elsewhere as needed
+        console.log({ participants, date, language, slot });
+
+        ['participants', 'date', 'language', 'slot'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el && el.value) {
+            if (el.tagName === 'SELECT' || el.type === 'date') {
+            el.disabled = true;
+            } else {
+            el.readOnly = true;
+            }
+            el.style.background = '#eee';
+        }
+        });
 
         const tourPrices = {
         "Changsha: River View, Ancient Hill, Handcraft & Night Market": [280, 160, 120, 115, 105, 95],
