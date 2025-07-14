@@ -2,6 +2,7 @@
 
 <html lang="en">
 <head>
+  <script src="https://www.paypal.com/sdk/js?client-id=AYAT6GJdWpCiKe4DSePT0dxWXS3tHzDmSpNp_DxQmKVdGpItNz0jdy_LP0xB_enfsJzn1RG_sNpcsFkv&currency=GBP&merchant-id=TSJPEKK7GPHRE"></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Book a Tour</title>
@@ -266,8 +267,8 @@
           form.style.display = 'block';
           this.textContent = 'Book';
         } else {
-          // Redirect to payment link when "Book" is pressed
-          window.location.href = 'https://your-payment-link.com';
+          // Open PayPal in a new window
+          window.location.href = '../../calendar.html';
         }
       });
 
@@ -281,6 +282,8 @@
           document.getElementById('toggle-booking').textContent = 'Book';
         });
       });
+
+      
 
       // Optionally, set the first slot as selected on page load
       document.querySelector('.slot-box').classList.add('selected');

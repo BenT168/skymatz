@@ -20,6 +20,8 @@
           margin-bottom: 1rem;
         }
       </style>
+
+<script src="https://www.paypal.com/sdk/js?client-id=AYAT6GJdWpCiKe4DSePT0dxWXS3tHzDmSpNp_DxQmKVdGpItNz0jdy_LP0xB_enfsJzn1RG_sNpcsFkv&currency=GBP&merchant-id=TSJPEKK7GPHRE"></script>
 </head>
 <body>
     <header>
@@ -88,17 +90,23 @@
     <input type="text" id="location" name="location" required><br><br>
     <label for="email">Email:</label><br>
     <input type="email" id="email" name="email" required><br><br>
-    <label for="email">Number of person:</label><br>
-    <select id="person" name="person" required>
-    <option value="">-- Select number of person --</option>
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
-    <option>6</option>
+    <label for="participants">Participants:</label><br>
+    <select id="participants" name="participants" required>
+    <option value="1">1 Person</option>
+    <option value="2">2 Persons</option>
+    <option value="3">3 Persons</option>
+    <option value="4">4 Persons</option>
+    <option value="5">5 Persons</option>
+    <option value="6">6 Persons</option>
     </select><br><br>
-    <button type="submit">Book Now</button>
+    <div id="price-info" style="margin-bottom:1rem; font-weight:bold;">
+        Price per person: £<span id="price-per-person">0</span><br><br>
+        Total Price: £<span id="total-price">0</span>
+      </div>
+    <form id="booking-form">
+        <!-- ... your form fields ... -->
+        <div id="paypal-button-container" style="margin-bottom:1rem;"></div>
+      </form>
 </form>
 
     </div>
@@ -107,6 +115,46 @@
     </footer>
 
     <script>
+        const tourPrices = {
+        "Changsha: River View, Ancient Hill, Handcraft & Night Market": [280, 160, 120, 115, 105, 95],
+        "Changsha: No Chili, No Problem, Non-Spicy Foodie Adventure": [190, 115, 90, 80, 70, 65],
+        "Chengdu Charm: Local Alley, Museum, Handcraft & Night Market": [280, 160, 120, 115, 105, 95],
+        "Chengdu: No Chili, No Problem, Non-Spicy Foodie Adventure": [190, 115, 90, 80, 70, 65],
+        "Chongqing: No Chili, No Problem, Non-Spicy Foodie Adventure": [195, 115, 90, 80, 70, 65],
+        "Chongqing NightGlow: Secret Magic Views, Old Blocks & Snacks": [220, 125, 95, 90, 80, 70],
+        "From Chongqing: Wulong Fim Locations Full-Day Guided Tour": [390, 230, 175, 165, 155, 145],
+        "Chongqing: Surreal Urban, Ancient Town, and Secret Viewpoint": [290, 160, 120, 110, 100, 90],
+        "Chongqing Heritage Tour: Hands-on Crafts & Teahouse Visit": [165, 95, 75, 70, 60, 55],
+        "From Chongqing: Rongchang Summer Cloth Crafts Heritage Tour": [205, 120, 95, 90, 85, 75],
+        "Chongqing Bishan: A Day with Wood Museum & Countryside Charm": [275, 160, 130, 120, 110, 105],
+        "Chongqing Beibei: Scenic Mountain, University & Old Street": [275, 160, 130, 120, 110, 100],
+        "Waves & Wharfs: Dalian's Chill Soul 1 Day Tour": [280, 160, 120, 115, 105, 95],
+        "Guangzhou: Historic Blocks, Local Food Market & Night View": [235, 135, 100, 96, 85, 80],
+        "Yangshuo Unveiled: Immerse in Magic Mountain, Town & Gourmet": [260, 160, 130, 120, 110, 100],
+        "Guilin Longji: Rice Terrace with Oil Tea Demo & Zhuang Lunch": [275, 165, 140, 130, 120, 110],
+        "Guilin: Heritage Tour of Ancient Village, Craft & River View": [260, 160, 130, 120, 110, 100],
+        "Guilin City Essence: Hilltop View, Handicraft & River Cruise": [280, 165, 135, 130, 120, 110],
+        "Hidden Hangzhou: West Lake, Silk Culture & Artisan Alleyways": [290, 165, 130, 120, 110, 100],
+        "From Hangzhou: Longwu Tea Village, Longmen Town & Dam Tour": [330, 195, 155, 150, 140, 130],
+        "Hangzhou to Haining: Tide Park, Folk Museum & Shadow Puppet": [305, 175, 135, 130, 120, 110],
+        "Hangzhou to Jiaxing: South Lake, Local Snack & Heritage Walk": [300, 165, 120, 115, 110, 95],
+        "Jingdezhen: Porcelain, Kilns, Art, and Market Tour": [290, 170, 135, 125, 120, 115],
+        "Nanjing: Green Boulevards, Bookstore Warmth & Scenic River": [280, 160, 130, 110, 95, 90],
+        "Qingdao Charm: History, Crafts, Offshore View & Night Market": [270, 155, 115, 110, 100, 90],
+        "Qingdao Night Bites & Hidden Alleys: Local Flavor Walk Feast": [190, 115, 90, 80, 70, 65],
+        "Shanghai Essentials: Culture, Cuisine, Garden & Night Views": [280, 160, 130, 110, 95, 90],
+        "Suzhou Slow Life: Gardens, Handicrafts & Pingtan Melody": [310, 180, 140, 135, 125, 115],
+        "Wuhan Melody: River Legend, Hidden Heritage & Craft Workshop": [280, 160, 120, 110, 105, 95],
+        "Xiamen City Essence: Sea View, Handicraft & Local Market": [265, 160, 130, 120, 115, 105],
+        "Xiamen Jimei: Sea View Metro, Nanyang Memory & Sunset Walk": [265, 150, 15, 105, 95, 85],
+        "Xiamen Food & Culture Walk: Old Streets, Bites & Landmarks": [190, 115, 90, 80, 70, 65],
+        "From Xiamen: Zhangzhou Tour with Mansions, Old Town & Craft": [270, 150, 115, 110, 100, 95],
+        "From Xiamen: Quanzhou Heritage Villages & Maritime Silk Tour": [270, 150, 115, 110, 100, 95],
+        "Xi’An: Terracotta Army Museum, Huaqing Palace, and Perforamce": [280, 160, 130, 110, 95, 90],
+        "Zhangjiajie: Sky Adventure, and the Paradise in One Day": [370, 220, 170, 160, 150, 140],
+        "Zhengzhou: Cultural Alleys, Handicraft, and Night Market": [270, 155, 115, 110, 100, 90],
+        "Zhengzhou to Kaifeng: Museum, Incense Craft and Song Legacy": [330, 195, 150, 145, 135, 125]
+        };
         document.addEventListener('DOMContentLoaded', function() {
           const dateInput = document.getElementById('date');
           const now = new Date();
@@ -116,6 +164,74 @@
           const dd = String(now.getDate()).padStart(2, '0');
           dateInput.min = `${yyyy}-${mm}-${dd}`;
         });
-        </script>
+
+        function updateTotalPrice() {
+        const tour = document.getElementById('tour').value;
+        const participants = parseInt(document.getElementById('participants').value, 10);
+        const pricePerPersonSpan = document.getElementById('price-per-person');
+        const priceSpan = document.getElementById('total-price');
+        if (tourPrices[tour] && participants >= 1 && participants <= 6) {
+            const perPerson = tourPrices[tour][participants - 1];
+            pricePerPersonSpan.textContent = perPerson ? perPerson : 'N/A';
+            priceSpan.textContent = perPerson ? perPerson * participants : 'N/A';
+        } else {
+            pricePerPersonSpan.textContent = 'N/A';
+            priceSpan.textContent = 'N/A';
+        }
+        }
+
+        // Render PayPal button
+        function renderPayPalButton() {
+        const tour = document.getElementById('tour').value;
+        const participants = parseInt(document.getElementById('participants').value, 10);
+        const totalPrice = document.getElementById('total-price').textContent;
+
+        // Remove previous button if re-rendering
+        document.getElementById('paypal-button-container').innerHTML = "";
+
+        if (!tour || isNaN(participants) || !totalPrice || totalPrice === 'N/A') return;
+
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                amount: {
+                    value: totalPrice,
+                    currency_code: "GBP"
+                },
+                description: tour
+                }]
+            });
+            },
+            onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                alert('Payment completed by ' + details.payer.name.given_name + '!');
+                // Optionally redirect or show confirmation
+            });
+            }
+        }).render('#paypal-button-container');
+        }
+
+        // Update PayPal button when tour or participants change
+        document.getElementById('tour').addEventListener('change', function() {
+        updateTotalPrice();
+        renderPayPalButton();
+        });
+        document.getElementById('participants').addEventListener('change', function() {
+        updateTotalPrice();
+        renderPayPalButton();
+        });
+
+        // Initial render
+        updateTotalPrice();
+        renderPayPalButton();
+
+        // Prevent default form submission
+        document.getElementById('booking-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        });
+
+        
+    </script>
 </body>
 </html>
