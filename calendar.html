@@ -297,7 +297,9 @@
         <option value="Chinese">Chinese</option>
         </select><br><br>
     <label for="slot">Pick Up Slot:</label><br>
-    <input type="time" id="slot" name="slot" required min="07:30" max="18:30" step="1800">
+    <select id="slot" name="slot" required disabled>
+        <option value="">-- Select a slot --</option>
+    </select>
     <div id="price-info" style="margin-bottom:1rem; font-weight:bold;">
         Price per person: £<span id="price-per-person">0</span><br><br>
         Total Price: £<span id="total-price">0</span>
@@ -345,6 +347,71 @@
             el.style.background = '#eee';
         }
         });
+
+        const tourSlots = {
+        "Changsha: River View, Ancient Hill, Handcraft & Night Market": ["08:00", "08:30", "09:00"],
+        "Changsha: No Chili, No Problem, Non-Spicy Foodie Adventure": ["16:00", "16:30", "17:00"],
+        "Chengdu Charm: Local Alley, Museum, Handcraft & Night Market": ["08:00", "08:30", "09:00"],
+        "Chengdu: No Chili, No Problem, Non-Spicy Foodie Adventure": ["16:00", "16:30", "17:00"],
+        "Chongqing: No Chili, No Problem, Non-Spicy Foodie Adventure": ["16:00", "16:30", "17:00"],
+        "Chongqing NightGlow: Secret Magic Views, Old Blocks & Snacks": ["16:00", "16:30", "17:00"],
+        "From Chongqing: Wulong Fim Locations Full-Day Guided Tour": ["07:30", "08:00", "08:30"],
+        "Chongqing: Surreal Urban, Ancient Town, and Secret Viewpoint": ["08:00", "08:30", "09:00"],
+        "Chongqing Heritage Tour: Hands-on Crafts & Teahouse Visit": ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+        "From Chongqing: Rongchang Summer Cloth Crafts Heritage Tour": ["09:00", "10:00", "11:00", "12:00"],
+        "Chongqing Bishan: A Day with Wood Museum & Countryside Charm": ["08:30", "09:00", "09:30"],
+        "Chongqing Beibei: Scenic Mountain, University & Old Street": ["08:00", "08:30", "09:00"],
+        "Waves & Wharfs: Dalian's Chill Soul 1 Day Tour": ["09:00", "09:30", "10:00"],
+        "Guangzhou: Historic Blocks, Local Food Market & Night View": ["16:00", "16:30", "17:00"],
+        "Yangshuo Unveiled: Immerse in Magic Mountain, Town & Gourmet": ["08:00", "08:30", "09:00"],
+        "Guilin Longji: Rice Terrace with Oil Tea Demo & Zhuang Lunch": ["08:00", "08:30", "09:00"],
+        "Guilin: Heritage Tour of Ancient Village, Craft & River View": ["08:00", "08:30", "09:00"],
+        "Guilin City Essence: Hilltop View, Handicraft & River Cruise": ["08:00", "08:30", "09:00"],
+        "Hidden Hangzhou: West Lake, Silk Culture & Artisan Alleyways": ["08:30", "09:00", "09:30"],
+        "From Hangzhou: Longwu Tea Village, Longmen Town & Dam Tour": ["08:00", "08:30", "09:00"],
+        "Hangzhou to Haining: Tide Park, Folk Museum & Shadow Puppet": ["08:00", "08:30", "09:00"],
+        "Hangzhou to Jiaxing: South Lake, Local Snack & Heritage Walk": ["08:00", "08:30", "09:00"],
+        "Jingdezhen: Porcelain, Kilns, Art, and Market Tour": ["09:00", "09:30", "10:00"],
+        "Nanjing: Green Boulevards, Bookstore Warmth & Scenic River": ["08:30", "09:00", "09:30"],
+        "Qingdao Charm: History, Crafts, Offshore View & Night Market": ["08:30", "09:00", "09:30"],
+        "Qingdao Night Bites & Hidden Alleys: Local Flavor Walk Feast": ["16:00", "16:30", "17:00"],
+        "Shanghai Essentials: Culture, Cuisine, Garden & Night Views": ["09:30", "10:00"],
+        "Suzhou Slow Life: Gardens, Handicrafts & Pingtan Melody": ["08:30", "09:00", "09:30"],
+        "Wuhan Melody: River Legend, Hidden Heritage & Craft Workshop": ["08:30", "09:00", "09:30"],
+        "Xiamen City Essence: Sea View, Handicraft & Local Market": ["08:30", "09:00", "09:30"],
+        "Xiamen Jimei: Sea View Metro, Nanyang Memory & Sunset Walk": ["08:30", "09:00", "09:30"],
+        "Xiamen Food & Culture Walk: Old Streets, Bites & Landmarks": ["16:00", "16:30", "17:00"],
+        "From Xiamen: Zhangzhou Tour with Mansions, Old Town & Craft": ["08:30", "09:00", "09:30"],
+        "From Xiamen: Quanzhou Heritage Villages & Maritime Silk Tour": ["08:30", "09:00", "09:30"],
+        "Xi’An: Terracotta Army Museum, Huaqing Palace, and Perforamce": ["08:30", "09:00", "09:30"],
+        "Zhangjiajie: Sky Adventure, and the Paradise in One Day": ["08:00", "08:30", "09:00"],
+        "Zhengzhou: Cultural Alleys, Handicraft, and Night Market": ["08:00", "08:30", "09:00"],
+        "Zhengzhou to Kaifeng: Museum, Incense Craft and Song Legacy": ["08:00", "08:30", "09:00"]
+        };
+
+        const tourSelect = document.getElementById('tour');
+        const slotSelect = document.getElementById('slot');
+
+        function updateSlotOptions() {
+        const tour = tourSelect.value;
+        slotSelect.innerHTML = '<option value="">-- Select a slot --</option>';
+        if (tourSlots[tour]) {
+            slotSelect.disabled = false;
+            tourSlots[tour].forEach(time => {
+            const opt = document.createElement('option');
+            opt.value = time;
+            opt.textContent = time;
+            slotSelect.appendChild(opt);
+            });
+        } else {
+            slotSelect.disabled = true;
+        }
+        }
+
+        tourSelect.addEventListener('change', updateSlotOptions);
+
+        // On page load, disable slot if no tour is selected
+        updateSlotOptions();
 
         const tourPrices = {
         "Changsha: River View, Ancient Hill, Handcraft & Night Market": [280, 160, 120, 115, 105, 95],
