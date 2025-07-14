@@ -5,6 +5,7 @@ body {
     padding: 0;
     background: #f8f9fa;
 }
+
 .site-header {
     background: #fff;
     border-bottom: 1px solid #e0e0e0;
@@ -40,8 +41,8 @@ body {
     color: #003366;
     text-decoration: none;
   }
-
-
+  
+  
     .header-nav > a,
     .header-nav > .dropdown {
     display: inline-block;
@@ -58,7 +59,7 @@ body {
     color: #003366;
     font-size: 1.1em;
   }
-
+  
   .dropdown {
     position: relative;
     display: inline-block;
@@ -107,7 +108,7 @@ body {
     .header-right {
       text-align: right;
     }
-  }
+  }  
 
 .hero {
     background: url('picture/The-Great-Wall-of-China-Beijing-China.jpg') center/cover no-repeat;
