@@ -34,6 +34,36 @@
         #contact-country {
         width: 150px; /* If your other inputs are 300px */
         }
+
+        @media (max-width: 600px) {
+            input[type="text"],
+            input[type="email"],
+            input[type="date"],
+            input[type="time"],
+            select {
+            width: 280px;      /* or your preferred width */
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            box-sizing: border-box;
+            margin-bottom: 1rem;
+            }
+
+            input[type="tel"]{
+            width: 180px;  
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            box-sizing: border-box;
+            margin-bottom: 1rem;
+            }
+
+            #contact-country {
+            width: 100px; /* If your other inputs are 300px */
+            }
+        }
       </style>
 
 <script src="https://www.paypal.com/sdk/js?client-id=AYAT6GJdWpCiKe4DSePT0dxWXS3tHzDmSpNp_DxQmKVdGpItNz0jdy_LP0xB_enfsJzn1RG_sNpcsFkv&currency=GBP&merchant-id=TSJPEKK7GPHRE"></script>
