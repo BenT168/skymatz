@@ -136,13 +136,19 @@ body {
     margin: 0 auto;
 }
 
+@media (max-width: 600px) {
+    .content img {
+        max-width: 300px;
+      }
+  }
+
 .content img {
     max-width: 100%;
     height: auto;
     display: block;
     margin: 0 auto 1.5em auto;
   }
-  
+
 main {
     max-width: 1200px;
     margin: 20px auto;
