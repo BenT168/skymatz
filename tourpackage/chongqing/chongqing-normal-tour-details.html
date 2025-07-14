@@ -7,17 +7,45 @@
     <link rel="stylesheet" href="../../tour_style.css">
 </head>
 <body>
-    <header>
-        <h1>Skymatz Resources</h1>
-        <p>Your Journey, Our Expertise</p>
-    </header>
-    <nav>
-        <a href="../../index.html">Home</a>
-        <a href="../../about.html">About Us</a>
-        <a href="../../destination.html">Destination</a>
-        <a href="../../calendar.html">Book Tour</a>
-        <a href="../../contact.html">Contact</a>
-    </nav>
+</head>
+<body>
+<header class="site-header">
+<div class="header-container">
+<div class="header-left">
+<img src="../../picture/companylogo/svgexport-3.jpg" alt="Skymatz Resources Logo" class="company-logo">
+</div>
+<nav class="header-nav">
+<a href="../../index.html">Home</a>
+<a href="../../about.html">About Us</a> 
+<div class="dropdown">
+  <a href="../../destination.html" class="dropbtn">Destination ▼</a>
+  <div class="dropdown-content">
+    <a href="../../city/chongqing.html">Chongqing</a>
+    <a href="../../city/chengdu.html">Chengdu</a>
+    <a href="../../city/changsha.html">Changsha</a>
+    <a href="../../city/dalian.html">Dalian</a>
+    <a href="../../city/guangzhou.html">Guangzhou</a>
+    <a href="../../city/guilin.html">Guilin</a>
+    <a href="../../city/hangzhou.html">Hangzhou</a>
+    <a href="../../city/jingdezhen.html">Jingdezhen</a>
+    <a href="../../city/nanjing.html">Nanjing</a>
+    <a href="../../city/qingdao.html">Qingdao</a>
+    <a href="../../city/shanghai.html">Shanghai</a>
+    <a href="../../city/wuhan.html">Wuhan</a>
+    <a href="../../city/xiamen.html">Xiamen</a>
+    <a href="../../city/xian.html">Xi’an</a>
+    <a href="../../city/zhangjiajie.html">Zhangjiajie</a>
+    <a href="../../city/zhengzhou.html">Zhengzhou</a>
+  </div>
+</div>
+<a href="../../calendar.html">Book Tour</a>
+<a href="../../contact.html">Contact Us</a>
+</nav>
+<div class="header-right">
+<span class="contact-number">+44 7724231701</span>
+</div>
+</div>
+</header>
 
     <div class="content">
       <main>
@@ -293,8 +321,18 @@
           form.style.display = 'block';
           this.textContent = 'Book';
         } else {
-          // Redirect to payment link when "Book" is pressed
-          window.location.href = '../../calendar.html';
+           // Redirect to payment link when "Book" is pressed
+          const tour = encodeURIComponent(document.querySelector('.about-activity h1').textContent);
+          const participants = encodeURIComponent(document.getElementById('participants').value);
+          const date = encodeURIComponent(document.getElementById('date').value);
+          const language = encodeURIComponent(document.getElementById('language').value);
+          const slot = encodeURIComponent(document.getElementById('slot').value);
+
+          // Build query string
+          const params = `?tour=${tour}&participants=${participants}&date=${date}&language=${language}&slot=${slot}`;
+
+          // Redirect with parameters
+          window.location.href = '../../calendar.html' + params;
         }
       });
 
