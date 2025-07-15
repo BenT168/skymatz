@@ -254,6 +254,12 @@ main {
     max-width: 200px; /* Limit the height of the city list box */
 }
 
+@media (max-width: 600px) {
+  .city-list {
+    display: none;
+  }
+}
+
 .city-list h3 {
     font-size: 1.2em; /* Reduce font size for better fit */
     margin-bottom: 10px;
