@@ -199,7 +199,7 @@ main {
     display: flex; /* Use flexbox to position map and list side by side */
     gap: 20px; /* Space between the map and the list */
     margin: 20px auto;
-    min-width: 1000px; /* Adjust container width to fit both map and list */
+    min-width: 600px; /* Adjust container width to fit both map and list */
     border: 1px solid #ccc; /* Optional border for better visibility */
     border-radius: 5px;
     background: #fff; /* Optional background for the container */
@@ -214,7 +214,7 @@ main {
 
 .map-container img {
     width: 100%;
-    min-width: 800px;
+    min-width: 400px;
     height: auto;
     border-radius: 5px;
     border: 1px solid #ccc; /* Optional border for better visibility */
