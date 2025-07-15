@@ -286,10 +286,23 @@ body {
       margin-bottom: 1.5rem;
     }
 
-    .booking-row select,
-    .booking-row input[type="date"],
-    .booking-row button {
-      height: 38 px; 
+    input[type="date"],
+    select {
+      height: 40px;
+      line-height: 40px;
+      font-size: 1rem;
+      padding: 0 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      margin-bottom: 1rem;
+    }
+
+    input[type="date"] {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background: #fff;
     }
     
   }
