@@ -519,3 +519,101 @@ button:hover {
       max-width: 98%;
     }
   }
+
+  /* Base font & colors matching Anderson Tours */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+.site-footer {
+  background-color: #333;
+  color: #eee;
+  font-family: 'Open Sans', sans-serif;
+  padding: 40px 20px;
+}
+
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-col {
+  flex: 1 1 300px;
+}
+
+.footer-col ul li a[href*="blog"] {
+  font-style: italic;
+}
+
+.footer-col h4 {
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.footer-col p,
+.footer-col ul {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+
+.footer-col a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.footer-col a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  border-top: 1px solid #444;
+  padding-top: 20px;
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  color: #ccc;
+  text-decoration: none;
+  gap: 8px; /* spacing between icon and text */
+}
+
+.social-link img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1); /* white icon on dark background */
+  transition: filter 0.3s;
+}
+
+.social-link:hover {
+  color: #fff;
+}
+
+.social-link img:hover {
+  filter: brightness(0.7) invert(1);
+}
+
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .footer-columns {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
