@@ -610,10 +610,3 @@ button:hover {
 }
 
 
-/* Responsive adjustment */
-@media (max-width: 768px) {
-  .footer-columns {
-    flex-direction: column;
-    gap: 20px;
-  }
-}
