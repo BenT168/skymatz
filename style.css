@@ -524,4 +524,64 @@ button:hover {
   filter: brightness(0.7) invert(1);
 }
 
+/* Responsive Footer Styling */
+@media (max-width: 768px) {
+  .footer-columns {
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 10px;
+  }
+
+  .footer-col {
+    flex: 1 1 100%;
+  }
+
+  .footer-col h4 {
+    margin-top: 20px;
+  }
+
+  .social-link {
+    justify-content: flex-start;
+  }
+
+  .footer-bottom {
+    font-size: 0.75rem;
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  .social-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-columns {
+    padding: 0 5px;
+  }
+
+  .footer-col p,
+  .footer-col ul {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .footer-col h4 {
+    font-size: 1rem;
+  }
+
+  .social-link img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .footer-bottom {
+    font-size: 0.7rem;
+  }
+}
+
+
+
 
