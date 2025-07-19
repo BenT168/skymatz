@@ -137,10 +137,101 @@
         </div>
     
     </div>
-        
-   
-    <footer>
+
+    <section class="reviews-carousel">
+      <button class="carousel-btn prev">‹</button>
+
+      <div class="reviews-wrapper">
+        <div class="review-slide">
+            <a href="tourpackage/chongqing/chongqing-normal-tour-details.html" style="color: black;text-decoration: none;">
+            <strong>Chongqing: Surreal Urban, Ancient Town, and Secret Viewpoint</strong></a>
+          <p>"I had a fantastic experience with Linxin! He was incredibly friendly and made me feel comfortable right away. What stood out most was how attentive he was to my interests. He picked up on the topics I was curious about and naturally steered our conversations toward them. It made the tour feel really personalized and engaging. I appreciated how thoughtful and knowledgeable he was throughout. Highly recommend!!"</p>
+          <strong>Shimin – United States</strong>
+        </div>
+        <div class="review-slide">
+            <a href="tourpackage/chongqing/chongqing-normal-tour-details.html" style="color: black;text-decoration: none;">
+          <strong>Guilin Longji: Rice Terrace with Oil Tea Demo &amp; Zhuang Lunch</strong></a>
+         <p>“The oil tea making was something I’d never tried before—so interesting! The local lunch was tasty, and our guide was really patient and friendly.”</p>
+        <strong>Elena – Greece</strong>
+        </div>
+        <div class="review-slide">
+            <a href="tourpackage/hangzhou/hangzhou-tea-tour-details.html" style="color: black;text-decoration: none;">
+          <strong>From Hangzhou: Longwu Tea Village, Longmen Town &amp; Dam Tour</strong></a>
+          <p>“Great! The tea picking in Longwu Village was a unique experience. The Song-style tea ceremony was elegant, and the riverside walk at Longlin Dam was peaceful. Our guide was knowledgeable and friendly. Highly recommend!”</p>
+          <strong>Isabella – Portugal</strong>
+        </div>
+      <div class="review-slide">
+           <a href="tourpackage/xiamen/xiamen-normal-tour-details.html" style="color: black;text-decoration: none;">
+          <strong>Xiamen City Essence: Sea View, Handicraft &amp; Local Market</strong></a>
+          <p>“The coastal views from the cable car were breathtaking. Visiting Nanputuo Temple gave a peaceful start to the day. The local market had so many interesting foods to try — a real treat!”</p>
+          <strong>Anya – Russia</strong>
+        </div>
+      </div>
+
+
+
+      <button class="carousel-btn next">›</button>
+      <div class="dots"></div>
+    </section>
+
+     <footer>
         &copy; 2025 Skymatz Resources | All Rights Reserved
     </footer>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const slides = document.querySelectorAll('.review-slide');
+        const btnPrev = document.querySelector('.carousel-btn.prev');
+        const btnNext = document.querySelector('.carousel-btn.next');
+        const dotContainer = document.querySelector('.dots');
+
+        let current = 0;
+        const total = slides.length;
+        let interval;
+
+        slides.forEach((_, i) => {
+          const dot = document.createElement('div');
+          dot.className = 'dot';
+          dot.dataset.index = i;
+          dot.addEventListener('click', () => gotoSlide(i));
+          dotContainer.appendChild(dot);
+        });
+
+        const updateDots = (index) => {
+          dotContainer.querySelectorAll('.dot')
+            .forEach(dot => dot.classList.toggle('active', +dot.dataset.index === index));
+        };
+
+        const gotoSlide = (index) => {
+          current = (index + total) % total;
+          document.querySelector('.reviews-wrapper')
+            .style.transform = `translateX(-${current * 100}%)`;
+          updateDots(current);
+        };
+
+        const nextSlide = () => gotoSlide(current + 1);
+
+        btnNext.addEventListener('click', () => {
+          nextSlide();
+          resetInterval();
+        });
+        btnPrev.addEventListener('click', () => {
+          gotoSlide(current - 1);
+          resetInterval();
+        });
+
+        const startInterval = () => {
+          interval = setInterval(nextSlide, 3000); // 3 seconds
+        };
+
+        const resetInterval = () => {
+          clearInterval(interval);
+          startInterval();
+        };
+
+        gotoSlide(0);
+        startInterval();
+      });
+    </script>
+
 </body>
 </html>
