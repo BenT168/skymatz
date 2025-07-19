@@ -445,14 +445,6 @@ body {
     color: #1976d2;
   }
   
-  
-footer {
-    background-color: #003366;
-    color: white;
-    text-align: center;
-    padding: 1em;
-    margin-top: 2em;
-}
 input, textarea {
     width: 100%;
     padding: 0.5em;
